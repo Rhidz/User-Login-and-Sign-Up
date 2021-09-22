@@ -1,4 +1,4 @@
-## LOGIN /SIGN UP
+## LOGIN / SIGN UP
 
 End points for User Login and Sign Up 
 
