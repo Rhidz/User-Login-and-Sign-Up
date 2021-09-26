@@ -31,6 +31,7 @@ final class User: Model, Content {
         var password: String
         var confirmPassword: String
     }
+    //let params = URLQueryEncoder
 }
 
 extension User.Create: Validatable {
@@ -60,4 +61,7 @@ extension User {
             userID: self.requireID()
         )
     }
+    
 }
+
+

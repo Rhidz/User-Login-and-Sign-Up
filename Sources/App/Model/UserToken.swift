@@ -27,3 +27,14 @@ final class UserToken: Model, Content {
         self.$user.id = userID
     }
 }
+
+// Dunno when to use it yet
+extension UserToken: ModelTokenAuthenticatable {
+    
+    static var valueKey = \UserToken.$value
+    static var userKey = \UserToken.$user
+    
+    var isValid: Bool {
+        true
+    }
+}

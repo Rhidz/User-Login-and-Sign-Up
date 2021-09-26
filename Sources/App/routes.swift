@@ -17,7 +17,7 @@ func routes(_ app: Application) throws {
             .map { token }
     }
     
-    // MARK:- ROUTE SIGN UP
+    // MARK: ROUTE SIGN UP
     app.post("users") { req -> EventLoopFuture<User> in
         try User.Create.validate(content: req) // validata using User.Create
         let create = try req.content.decode(User.Create.self)
@@ -31,6 +31,11 @@ func routes(_ app: Application) throws {
         return user.save(on: req.db)
             .map { user }
         
+    }
+    // MARK: CURRENTLY AUTHENTICATED USER
+    let tokenProtected = app.grouped(UserToken.authenticator())
+    tokenProtected.get("me") { req -> User in
+        try req.auth.require(User.self)
     }
     
     
